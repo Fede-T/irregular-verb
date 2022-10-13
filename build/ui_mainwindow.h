@@ -57,9 +57,9 @@ public:
     QSpacerItem *horizontalSpacer_6;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_5;
-    QLabel *cant_verbos_correctos;
+    QLabel *puntos;
     QLabel *label_8;
-    QLabel *verbos_totales;
+    QLabel *puntos_totales;
     QLabel *label_9;
     QLabel *label_3;
 
@@ -217,6 +217,7 @@ public:
         QFont font1;
         font1.setPointSize(9);
         ps_correct->setFont(font1);
+        ps_correct->setStyleSheet(QString::fromUtf8(""));
         ps_correct->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_8->addWidget(ps_correct);
@@ -282,13 +283,13 @@ public:
 
         horizontalLayout_4->addWidget(label_5);
 
-        cant_verbos_correctos = new QLabel(centralwidget);
-        cant_verbos_correctos->setObjectName(QString::fromUtf8("cant_verbos_correctos"));
-        sizePolicy.setHeightForWidth(cant_verbos_correctos->sizePolicy().hasHeightForWidth());
-        cant_verbos_correctos->setSizePolicy(sizePolicy);
-        cant_verbos_correctos->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        puntos = new QLabel(centralwidget);
+        puntos->setObjectName(QString::fromUtf8("puntos"));
+        sizePolicy.setHeightForWidth(puntos->sizePolicy().hasHeightForWidth());
+        puntos->setSizePolicy(sizePolicy);
+        puntos->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        horizontalLayout_4->addWidget(cant_verbos_correctos);
+        horizontalLayout_4->addWidget(puntos);
 
         label_8 = new QLabel(centralwidget);
         label_8->setObjectName(QString::fromUtf8("label_8"));
@@ -297,13 +298,13 @@ public:
 
         horizontalLayout_4->addWidget(label_8);
 
-        verbos_totales = new QLabel(centralwidget);
-        verbos_totales->setObjectName(QString::fromUtf8("verbos_totales"));
-        sizePolicy.setHeightForWidth(verbos_totales->sizePolicy().hasHeightForWidth());
-        verbos_totales->setSizePolicy(sizePolicy);
-        verbos_totales->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        puntos_totales = new QLabel(centralwidget);
+        puntos_totales->setObjectName(QString::fromUtf8("puntos_totales"));
+        sizePolicy.setHeightForWidth(puntos_totales->sizePolicy().hasHeightForWidth());
+        puntos_totales->setSizePolicy(sizePolicy);
+        puntos_totales->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
-        horizontalLayout_4->addWidget(verbos_totales);
+        horizontalLayout_4->addWidget(puntos_totales);
 
         label_9 = new QLabel(centralwidget);
         label_9->setObjectName(QString::fromUtf8("label_9"));
@@ -360,10 +361,10 @@ public:
         pp_correct->setText(QString());
         boton->setText(QCoreApplication::translate("MainWindow", "Enviar", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "Ver. 1.0", nullptr));
-        cant_verbos_correctos->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        puntos->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", " / ", nullptr));
-        verbos_totales->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        label_9->setText(QCoreApplication::translate("MainWindow", "correctas", nullptr));
+        puntos_totales->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "puntos", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Created by Troncoso Federico", nullptr));
     } // retranslateUi
 

@@ -315,6 +315,9 @@ image: url(:/Guia de ventana nueva.png);
           <pointsize>9</pointsize>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -429,7 +432,7 @@ image: url(:/Guia de ventana nueva.png);
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="cant_verbos_correctos">
+       <widget class="QLabel" name="puntos">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -458,7 +461,7 @@ image: url(:/Guia de ventana nueva.png);
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="verbos_totales">
+       <widget class="QLabel" name="puntos_totales">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -482,7 +485,7 @@ image: url(:/Guia de ventana nueva.png);
          </sizepolicy>
         </property>
         <property name="text">
-         <string>correctas</string>
+         <string>puntos</string>
         </property>
        </widget>
       </item>

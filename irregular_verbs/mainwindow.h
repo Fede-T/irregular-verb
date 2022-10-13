@@ -22,14 +22,21 @@ public:
     void selectMode();
     void inicializar();
     void verificar();
+    void setVerbo();
+    void corregir();
+
+private slots:
+    void on_boton_clicked();
 
 private:
     Ui::MainWindow *ui;
+    verb verboSeleccionado;
+    int pos;
     vector<verb> verbs;
-    bool infiniteMode;
+    bool infiniteMode = false;
     int cantVerbosIniciales;
-    int cantCorrectas;
-    int cantVerbosUsados;
+    int puntos = 0;
+    int puntosTotales = 0;
     QMessageBox errorArchivo;
     QMessageBox eleccionModo;
 };

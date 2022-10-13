@@ -15,19 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     srand(time(NULL));
     inicializar();
-    int pos;
-    if(this->infiniteMode == false){
-        for(int i = 0; i < this->cantVerbosIniciales; i++){
-            pos = rand() %this->verbs.size() + 0;
-            ui->inf_verb->setText(QString::fromStdString(this->verbs[pos].getInfinitive()));
-            ui->ps_verb->setText(QString::fromStdString(this->verbs[pos].getPast_simple()));
-            ui->pp_verb->setText(QString::fromStdString(this->verbs[pos].getPast_participle()));
-
-
-            this->verbs.erase(this->verbs.begin()+pos);
-        }
-    }
-
+    setVerbo();
 }
 
 MainWindow::~MainWindow()
@@ -66,8 +54,8 @@ void MainWindow::selectMode()
     eleccionModo.setWindowTitle("Seleccionar modo");
     eleccionModo.setText("Selecciona el modo para practicar");
     eleccionModo.setIcon(QMessageBox::Question);
-    eleccionModo.addButton("infinito", QMessageBox::YesRole);
     eleccionModo.addButton("sin repeticion", QMessageBox::NoRole);
+    eleccionModo.addButton("infinito", QMessageBox::YesRole);
     eleccionModo.addButton("ayuda", QMessageBox::HelpRole);
     eleccionModo.exec();
     int respuesta = eleccionModo.buttonRole(eleccionModo.clickedButton());
@@ -98,13 +86,81 @@ void MainWindow::inicializar()
     this->leerVerbos();
     this->lockCantidad();
     this->selectMode();
-    this->cantCorrectas = 0;
-    this->cantVerbosUsados = 0;
+    this->puntos = 0;
+    if(this->infiniteMode == false){
+        this->puntosTotales = this->verbs.size();
+        ui->puntos_totales->setText(QString::number(this->puntosTotales*2));
+        ui->puntos->setText(QString::number(this->puntos));
+    }
+    else{
+        ui->puntos_totales->setText(QString::number(0));
+        ui->puntos_totales->setText(QString::number(this->puntos));
+    }
     ui->boton->setEnabled(true);
 }
 
 void MainWindow::verificar()
 {
 
+}
+
+void MainWindow::setVerbo()
+{
+    if(this->infiniteMode == false){
+        pos = rand() % this->verbs.size() + 0;
+        this->verboSeleccionado.setData(this->verbs[pos].getInfinitive(), this->verbs[pos].getPast_simple(), this->verbs[pos].getPast_participle());
+        ui->inf_verb->setText(QString::fromStdString(this->verboSeleccionado.getInfinitive()));
+        this->verbs.erase(this->verbs.begin()+pos);
+    }
+    else{
+        pos = rand() % this->verbs.size() + 0;
+        this->verboSeleccionado.setData(this->verbs[pos].getInfinitive(), this->verbs[pos].getPast_simple(), this->verbs[pos].getPast_participle());
+        ui->inf_verb->setText(QString::fromStdString(this->verboSeleccionado.getInfinitive()));
+    }
+
+    ui->ps_verb->setText("");
+    ui->pp_verb->setText("");
+
+}
+
+void MainWindow::corregir()
+{
+    QString ps = ui->ps_verb->text();
+    QString pp = ui->pp_verb->text();
+    if(this->verboSeleccionado.comparePS(ps.toStdString())){
+        this->puntos++;
+        ui->ps_correct->setStyleSheet("color: green;");
+        ui->ps_correct->setText(QString::fromStdString(this->verboSeleccionado.getPast_simple()));
+    }
+    else{
+        ui->ps_correct->setStyleSheet("color: red;");
+        ui->ps_correct->setText(QString::fromStdString(this->verboSeleccionado.getPast_simple()));
+    }
+
+    if(this->verboSeleccionado.comparePP(pp.toStdString())){
+        this->puntos++;
+        ui->pp_correct->setStyleSheet("color: green");
+        ui->pp_correct->setText(QString::fromStdString(this->verboSeleccionado.getPast_participle()));
+    }
+    else{
+        ui->pp_correct->setStyleSheet("color: red");
+        ui->pp_correct->setText(QString::fromStdString(this->verboSeleccionado.getPast_participle()));
+    }
+    if(this->infiniteMode == true){
+        this->puntosTotales += 2;
+    }
+
+    ui->puntos->setText(QString::number(this->puntos));
+    if(this->infiniteMode == true){
+        this->puntosTotales += 2;
+        ui->puntos_totales->setText(QString::number(this->puntosTotales));
+    }
+
+    this->setVerbo();
+}
+
+void MainWindow::on_boton_clicked()
+{
+    corregir();
 }
 
