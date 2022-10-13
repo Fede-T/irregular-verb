@@ -41,9 +41,9 @@ public:
     QSpacerItem *horizontalSpacer_7;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer_8;
-    QLineEdit *pp_verb;
-    QSpacerItem *horizontalSpacer_2;
     QLineEdit *ps_verb;
+    QSpacerItem *horizontalSpacer_2;
+    QLineEdit *pp_verb;
     QSpacerItem *horizontalSpacer_9;
     QHBoxLayout *horizontalLayout_8;
     QSpacerItem *horizontalSpacer_11;
@@ -170,31 +170,31 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer_8);
 
-        pp_verb = new QLineEdit(centralwidget);
-        pp_verb->setObjectName(QString::fromUtf8("pp_verb"));
+        ps_verb = new QLineEdit(centralwidget);
+        ps_verb->setObjectName(QString::fromUtf8("ps_verb"));
         QSizePolicy sizePolicy2(QSizePolicy::Ignored, QSizePolicy::Fixed);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(pp_verb->sizePolicy().hasHeightForWidth());
-        pp_verb->setSizePolicy(sizePolicy2);
-        pp_verb->setFont(font);
-        pp_verb->setAlignment(Qt::AlignCenter);
-        pp_verb->setReadOnly(false);
+        sizePolicy2.setHeightForWidth(ps_verb->sizePolicy().hasHeightForWidth());
+        ps_verb->setSizePolicy(sizePolicy2);
+        ps_verb->setFont(font);
+        ps_verb->setAlignment(Qt::AlignCenter);
+        ps_verb->setReadOnly(false);
 
-        horizontalLayout_3->addWidget(pp_verb);
+        horizontalLayout_3->addWidget(ps_verb);
 
         horizontalSpacer_2 = new QSpacerItem(10, 20, QSizePolicy::Ignored, QSizePolicy::Minimum);
 
         horizontalLayout_3->addItem(horizontalSpacer_2);
 
-        ps_verb = new QLineEdit(centralwidget);
-        ps_verb->setObjectName(QString::fromUtf8("ps_verb"));
-        sizePolicy2.setHeightForWidth(ps_verb->sizePolicy().hasHeightForWidth());
-        ps_verb->setSizePolicy(sizePolicy2);
-        ps_verb->setFont(font);
-        ps_verb->setAlignment(Qt::AlignCenter);
+        pp_verb = new QLineEdit(centralwidget);
+        pp_verb->setObjectName(QString::fromUtf8("pp_verb"));
+        sizePolicy2.setHeightForWidth(pp_verb->sizePolicy().hasHeightForWidth());
+        pp_verb->setSizePolicy(sizePolicy2);
+        pp_verb->setFont(font);
+        pp_verb->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_3->addWidget(ps_verb);
+        horizontalLayout_3->addWidget(pp_verb);
 
         horizontalSpacer_9 = new QSpacerItem(17, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -355,7 +355,7 @@ public:
         inf_verb->setText(QCoreApplication::translate("MainWindow", "verb", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "  past simple  ", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "past participle", nullptr));
-        ps_verb->setText(QString());
+        pp_verb->setText(QString());
         ps_correct->setText(QString());
         pp_correct->setText(QString());
         boton->setText(QCoreApplication::translate("MainWindow", "Enviar", nullptr));

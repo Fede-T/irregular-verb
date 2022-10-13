@@ -2,16 +2,31 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <fstream>
+#include <QString>
 #include <QTimer>
 #include <string>
 #include <QDebug>
+#include <time.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    srand(time(NULL));
     inicializar();
+    int pos;
+    if(this->infiniteMode == false){
+        for(int i = 0; i < this->cantVerbosIniciales; i++){
+            pos = rand() %this->verbs.size() + 0;
+            ui->inf_verb->setText(QString::fromStdString(this->verbs[pos].getInfinitive()));
+            ui->ps_verb->setText(QString::fromStdString(this->verbs[pos].getPast_simple()));
+            ui->pp_verb->setText(QString::fromStdString(this->verbs[pos].getPast_participle()));
+
+
+            this->verbs.erase(this->verbs.begin()+pos);
+        }
+    }
 
 }
 
@@ -86,5 +101,10 @@ void MainWindow::inicializar()
     this->cantCorrectas = 0;
     this->cantVerbosUsados = 0;
     ui->boton->setEnabled(true);
+}
+
+void MainWindow::verificar()
+{
+
 }
 

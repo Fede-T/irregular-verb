@@ -21,6 +21,7 @@ public:
     void lockCantidad();
     void selectMode();
     void inicializar();
+    void verificar();
 
 private:
     Ui::MainWindow *ui;
