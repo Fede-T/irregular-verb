@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>guia de ventana.png</file>
+        <file>Guia de ventana nueva.png</file>
+    </qresource>
+</RCC>
