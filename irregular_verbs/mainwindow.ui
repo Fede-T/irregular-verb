@@ -239,6 +239,9 @@ image: url(:/Guia de ventana nueva.png);
         <property name="readOnly">
          <bool>false</bool>
         </property>
+        <property name="placeholderText">
+         <string/>
+        </property>
        </widget>
       </item>
       <item>
@@ -388,10 +391,13 @@ image: url(:/Guia de ventana nueva.png);
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Enviar</string>
+         <string>Check</string>
+        </property>
+        <property name="autoDefault">
+         <bool>true</bool>
         </property>
         <property name="default">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -485,7 +491,7 @@ image: url(:/Guia de ventana nueva.png);
          </sizepolicy>
         </property>
         <property name="text">
-         <string>puntos</string>
+         <string>points</string>
         </property>
        </widget>
       </item>

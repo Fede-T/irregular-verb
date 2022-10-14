@@ -257,6 +257,7 @@ public:
         sizePolicy3.setVerticalStretch(0);
         sizePolicy3.setHeightForWidth(boton->sizePolicy().hasHeightForWidth());
         boton->setSizePolicy(sizePolicy3);
+        boton->setAutoDefault(true);
 
         horizontalLayout_7->addWidget(boton);
 
@@ -343,7 +344,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        boton->setDefault(true);
+        boton->setDefault(false);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -356,15 +357,16 @@ public:
         inf_verb->setText(QCoreApplication::translate("MainWindow", "verb", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "  past simple  ", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "past participle", nullptr));
+        ps_verb->setPlaceholderText(QString());
         pp_verb->setText(QString());
         ps_correct->setText(QString());
         pp_correct->setText(QString());
-        boton->setText(QCoreApplication::translate("MainWindow", "Enviar", nullptr));
+        boton->setText(QCoreApplication::translate("MainWindow", "Check", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "Ver. 1.0", nullptr));
         puntos->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", " / ", nullptr));
         puntos_totales->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        label_9->setText(QCoreApplication::translate("MainWindow", "puntos", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "points", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Created by Troncoso Federico", nullptr));
     } // retranslateUi
 

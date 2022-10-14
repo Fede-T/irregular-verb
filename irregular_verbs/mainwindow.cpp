@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     srand(time(NULL));
+    iniciarVentanas();
     inicializar();
 }
 
@@ -26,28 +27,32 @@ MainWindow::~MainWindow()
 void MainWindow::iniciarVentanas()
 {
     //errorArchivo
-    errorArchivo.setWindowTitle("Fallo al abrir el archivo");
-    errorArchivo.setText("Error al abrir el archivo. Verifique que el archivo exista");
+    errorArchivo.setWindowTitle("Failed to open file");
+    errorArchivo.setText("Error opening the file. Verify that the file exists");
     errorArchivo.setIcon(QMessageBox::Critical);
 
     //Eleccion de modo
-    eleccionModo.setWindowTitle("Seleccionar modo");
-    eleccionModo.setText("Selecciona el modo para practicar");
+    eleccionModo.setWindowTitle("Select mode");
+    eleccionModo.setText("Select the mode to practice");
     eleccionModo.setIcon(QMessageBox::Question);
-    eleccionModo.addButton("sin repeticion", QMessageBox::NoRole);
-    eleccionModo.addButton("infinito", QMessageBox::YesRole);
-    eleccionModo.addButton("ayuda", QMessageBox::HelpRole);
+    eleccionModo.addButton("no repeat", QMessageBox::NoRole);
+    eleccionModo.addButton("infinite", QMessageBox::YesRole);
+    eleccionModo.addButton("help", QMessageBox::HelpRole);
 
     //Ayuda
-    ayuda1.setWindowTitle("ayuda");
+    ayuda1.setWindowTitle("Help");
     ayuda1.setIcon(QMessageBox::Question);
-    ayuda1.setText("- Infinito: Saldrán verbos de manera aleatoria sin fin.\n- Sin repeticion: Saldran verbos de manera aleatoria solo 1 vez.");
+    ayuda1.setText("- Infinite: Verbs will appear randomly without end.\n- No repeat: Verbs will appear randomly only 1 time.");
 
     //Puntaje
-    puntuacion.setWindowTitle("Practica terminada!!");
-    puntuacion.setText("Tu puntuacion fue de:\n" + QString::number(this->puntos) + "/" + QString::number(this->puntosTotales) +
-                       "¿Te gustaria volver a empezar?");
+    puntuacion.setWindowTitle("practice finished!");
+    puntuacion.setText("Your score is: " + QString::number(this->puntos) + "/" + QString::number(this->puntosTotales) +
+                       " points.\nWould you like to start again?");
     puntuacion.setIcon(QMessageBox::Information);
+    puntuacion.addButton(QMessageBox::Yes);
+    puntuacion.addButton(QMessageBox::No);
+    puntuacion.setDefaultButton(QMessageBox::Yes);
+    puntuacion.setEscapeButton(QMessageBox::No);
 }
 
 
@@ -99,9 +104,13 @@ void MainWindow::selectMode()
 void MainWindow::inicializar()
 {
     ui->boton->setEnabled(false);
+    ui->inf_verb->setText("verb");
+    ui->ps_verb->setText("");
+    ui->pp_verb->setText("");
+    ui->puntos->setText(QString::number(0));
+    ui->puntos_totales->setText(QString::number(0));
     this->verbs.clear();
     this->leerVerbos();
-    this->iniciarVentanas();
     this->lockCantidad();
     this->selectMode();
     this->puntos = 0;
@@ -165,9 +174,6 @@ void MainWindow::corregir()
         ui->pp_correct->setStyleSheet("color: red");
         ui->pp_correct->setText(QString::fromStdString(this->verboSeleccionado.getPast_participle()));
     }
-    if(this->infiniteMode == true){
-        this->puntosTotales += 2;
-    }
 
     ui->puntos->setText(QString::number(this->puntos));
     if(this->infiniteMode == true){
@@ -176,6 +182,8 @@ void MainWindow::corregir()
     }
 
     if((this->infiniteMode == false) && (this->verbs.size() == 0)){
+        puntuacion.setText("Your score is: " + QString::number(this->puntos) + "/" + QString::number(this->puntosTotales*2) +
+                           " points.\nWould you like to start again?");
         mostrarPuntuacion();
     }
     else{
@@ -185,8 +193,12 @@ void MainWindow::corregir()
 
 void MainWindow::mostrarPuntuacion()
 {
-
-
+    if(puntuacion.exec() == QMessageBox::Yes){
+        inicializar();
+    }
+    else{
+        QTimer::singleShot(250, qApp, SLOT(quit()));
+    }
 }
 
 void MainWindow::on_boton_clicked()
