@@ -1,6 +1,6 @@
 #include <windows.h>
 
-IDI_ICON1	ICON	"C:\\Users\\Usuario\\Desktop\\interfaz grafica\\irregular verb\\irregular_verbs\\icon.ico"
+IDI_ICON1	ICON	"C:\\Users\\feder\\Desktop\\interfaz_grafica\\irregular-verb\\irregular_verbs\\icon.ico"
 
 VS_VERSION_INFO VERSIONINFO
 	FILEVERSION 0,0,0,0

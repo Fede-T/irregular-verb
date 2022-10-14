@@ -32,6 +32,7 @@ void MainWindow::iniciarVentanas()
     errorArchivo.setText("Error opening the file. Verify that the file exists");
     errorArchivo.setIcon(QMessageBox::Critical);
     errorArchivo.setWindowIcon(QIcon(":/icon.png"));
+    errorArchivo.setEscapeButton(QMessageBox::Ok);
 
 
     //Eleccion de modo

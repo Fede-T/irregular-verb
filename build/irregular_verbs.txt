@@ -1,4 +1,4 @@
-Be was/were been
+be was/were been
 beat beat beaten
 become became become
 begin began begun
@@ -56,7 +56,7 @@ lose lost lost
 make made made
 mean meant meant
 meet met met
-must hail_to (had to)
+must hail_to had_to
 Pay paid paid
 put put put
 read read read
