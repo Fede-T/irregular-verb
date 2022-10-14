@@ -24,6 +24,8 @@ public:
     void verificar();
     void setVerbo();
     void corregir();
+    void mostrarPuntuacion();
+    void iniciarVentanas();
 
 private slots:
     void on_boton_clicked();
@@ -38,6 +40,8 @@ private:
     int puntos = 0;
     int puntosTotales = 0;
     QMessageBox errorArchivo;
+    QMessageBox ayuda1;
     QMessageBox eleccionModo;
+    QMessageBox puntuacion;
 };
 #endif // MAINWINDOW_H

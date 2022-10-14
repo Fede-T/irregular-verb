@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <time.h>
 
+using namespace std;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -15,7 +16,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     srand(time(NULL));
     inicializar();
-    setVerbo();
 }
 
 MainWindow::~MainWindow()
@@ -23,19 +23,45 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::iniciarVentanas()
+{
+    //errorArchivo
+    errorArchivo.setWindowTitle("Fallo al abrir el archivo");
+    errorArchivo.setText("Error al abrir el archivo. Verifique que el archivo exista");
+    errorArchivo.setIcon(QMessageBox::Critical);
+
+    //Eleccion de modo
+    eleccionModo.setWindowTitle("Seleccionar modo");
+    eleccionModo.setText("Selecciona el modo para practicar");
+    eleccionModo.setIcon(QMessageBox::Question);
+    eleccionModo.addButton("sin repeticion", QMessageBox::NoRole);
+    eleccionModo.addButton("infinito", QMessageBox::YesRole);
+    eleccionModo.addButton("ayuda", QMessageBox::HelpRole);
+
+    //Ayuda
+    ayuda1.setWindowTitle("ayuda");
+    ayuda1.setIcon(QMessageBox::Question);
+    ayuda1.setText("- Infinito: Saldrán verbos de manera aleatoria sin fin.\n- Sin repeticion: Saldran verbos de manera aleatoria solo 1 vez.");
+
+    //Puntaje
+    puntuacion.setWindowTitle("Practica terminada!!");
+    puntuacion.setText("Tu puntuacion fue de:\n" + QString::number(this->puntos) + "/" + QString::number(this->puntosTotales) +
+                       "¿Te gustaria volver a empezar?");
+    puntuacion.setIcon(QMessageBox::Information);
+}
+
+
 void MainWindow::leerVerbos()
 {
     fstream archivo("irregular_verbs.txt", ios::in);
     if (archivo.fail()){
-        errorArchivo.setWindowTitle("Fallo al abrir el archivo");
-        errorArchivo.setText("Error al abrir el archivo. Verifique que el archivo exista");
-        errorArchivo.setIcon(QMessageBox::Critical);
         if(errorArchivo.exec() == QMessageBox::Ok)
             QTimer::singleShot(250, qApp, SLOT(quit()));
     }
 
     string infinitive, past_simple, past_participle;
     while(!archivo.eof()){
+        //cin.ignore();
         getline(archivo, infinitive, ' ');
         getline(archivo, past_simple, ' ');
         getline(archivo, past_participle, '\n');
@@ -51,20 +77,11 @@ void MainWindow::lockCantidad()
 
 void MainWindow::selectMode()
 {
-    eleccionModo.setWindowTitle("Seleccionar modo");
-    eleccionModo.setText("Selecciona el modo para practicar");
-    eleccionModo.setIcon(QMessageBox::Question);
-    eleccionModo.addButton("sin repeticion", QMessageBox::NoRole);
-    eleccionModo.addButton("infinito", QMessageBox::YesRole);
-    eleccionModo.addButton("ayuda", QMessageBox::HelpRole);
+
     eleccionModo.exec();
     int respuesta = eleccionModo.buttonRole(eleccionModo.clickedButton());
     while(respuesta == QMessageBox::HelpRole){
         //qDebug("help");
-        QMessageBox ayuda1;
-        ayuda1.setWindowTitle("ayuda");
-        ayuda1.setIcon(QMessageBox::Question);
-        ayuda1.setText("- Infinito: Saldrán verbos de manera aleatoria sin fin.\n- Sin repeticion: Saldran verbos de manera aleatoria solo 1 vez.");
         ayuda1.exec();
         eleccionModo.exec();
         respuesta = eleccionModo.buttonRole(eleccionModo.clickedButton());
@@ -84,6 +101,7 @@ void MainWindow::inicializar()
     ui->boton->setEnabled(false);
     this->verbs.clear();
     this->leerVerbos();
+    this->iniciarVentanas();
     this->lockCantidad();
     this->selectMode();
     this->puntos = 0;
@@ -97,6 +115,7 @@ void MainWindow::inicializar()
         ui->puntos_totales->setText(QString::number(this->puntos));
     }
     ui->boton->setEnabled(true);
+    this->setVerbo();
 }
 
 void MainWindow::verificar()
@@ -156,7 +175,18 @@ void MainWindow::corregir()
         ui->puntos_totales->setText(QString::number(this->puntosTotales));
     }
 
-    this->setVerbo();
+    if((this->infiniteMode == false) && (this->verbs.size() == 0)){
+        mostrarPuntuacion();
+    }
+    else{
+        this->setVerbo();
+    }
+}
+
+void MainWindow::mostrarPuntuacion()
+{
+
+
 }
 
 void MainWindow::on_boton_clicked()
