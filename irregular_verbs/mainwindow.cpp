@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setWindowIcon(QIcon(":/icon.png"));
     srand(time(NULL));
     iniciarVentanas();
     inicializar();
@@ -30,6 +31,8 @@ void MainWindow::iniciarVentanas()
     errorArchivo.setWindowTitle("Failed to open file");
     errorArchivo.setText("Error opening the file. Verify that the file exists");
     errorArchivo.setIcon(QMessageBox::Critical);
+    errorArchivo.setWindowIcon(QIcon(":/icon.png"));
+
 
     //Eleccion de modo
     eleccionModo.setWindowTitle("Select mode");
@@ -38,11 +41,13 @@ void MainWindow::iniciarVentanas()
     eleccionModo.addButton("no repeat", QMessageBox::NoRole);
     eleccionModo.addButton("infinite", QMessageBox::YesRole);
     eleccionModo.addButton("help", QMessageBox::HelpRole);
+    eleccionModo.setWindowIcon(QIcon(":/icon.png"));
 
     //Ayuda
     ayuda1.setWindowTitle("Help");
     ayuda1.setIcon(QMessageBox::Question);
     ayuda1.setText("- Infinite: Verbs will appear randomly without end.\n- No repeat: Verbs will appear randomly only 1 time.");
+    ayuda1.setWindowIcon(QIcon(":/icon.png"));
 
     //Puntaje
     puntuacion.setWindowTitle("practice finished!");
@@ -53,6 +58,7 @@ void MainWindow::iniciarVentanas()
     puntuacion.addButton(QMessageBox::No);
     puntuacion.setDefaultButton(QMessageBox::Yes);
     puntuacion.setEscapeButton(QMessageBox::No);
+    puntuacion.setWindowIcon(QIcon(":/icon.png"));
 }
 
 

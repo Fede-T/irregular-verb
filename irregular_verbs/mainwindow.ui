@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Irregular verbs</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="icon.ico"/>
+  </property>
   <property name="styleSheet">
    <string notr="true">#centralwidget{/*
 image: url(:/Guia de ventana nueva.png);

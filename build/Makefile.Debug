@@ -19,7 +19,7 @@ CXXFLAGS      = -fno-keep-inline-dllexport -g -std=gnu++1z -Wall -Wextra -Wextra
 INCPATH       = -I../irregular_verbs -I. -IC:/Qt/6.2.4/mingw_64/include -IC:/Qt/6.2.4/mingw_64/include/QtWidgets -IC:/Qt/6.2.4/mingw_64/include/QtGui -IC:/Qt/6.2.4/mingw_64/include/QtCore -Idebug -I. -I/include -IC:/Qt/6.2.4/mingw_64/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-subsystem,windows -mthreads
-LIBS        =        C:\Qt\6.2.4\mingw_64\lib\libQt6Widgets.a C:\Qt\6.2.4\mingw_64\lib\libQt6Gui.a C:\Qt\6.2.4\mingw_64\lib\libQt6Core.a -lmingw32 C:\Qt\6.2.4\mingw_64\lib\libQt6EntryPoint.a -lshell32  
+LIBS        =        C:\Qt\6.2.4\mingw_64\lib\libQt6Widgets.a C:\Qt\6.2.4\mingw_64\lib\libQt6Gui.a C:\Qt\6.2.4\mingw_64\lib\libQt6Core.a debug\Irregular_verbs_resource_res.o -lmingw32 C:\Qt\6.2.4\mingw_64\lib\libQt6EntryPoint.a -lshell32  
 QMAKE         = C:\Qt\6.2.4\mingw_64\bin\qmake.exe
 DEL_FILE      = del
 CHK_DIR_EXISTS= if not exist
@@ -40,7 +40,7 @@ IDC           = idc
 IDL           = midl
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = debug\Irregular_verbs_resource_res.o
 SED           = $(QMAKE) -install sed
 MOVE          = move
 
@@ -74,8 +74,11 @@ DESTDIR_TARGET = debug\Irregular_verbs.exe
 first: all
 all: Makefile.Debug  debug/Irregular_verbs.exe
 
-debug/Irregular_verbs.exe: C:/Qt/6.2.4/mingw_64/lib/libQt6Widgets.a C:/Qt/6.2.4/mingw_64/lib/libQt6Gui.a C:/Qt/6.2.4/mingw_64/lib/libQt6Core.a C:/Qt/6.2.4/mingw_64/lib/libQt6EntryPoint.a ui_mainwindow.h $(OBJECTS) 
+debug/Irregular_verbs.exe: C:/Qt/6.2.4/mingw_64/lib/libQt6Widgets.a C:/Qt/6.2.4/mingw_64/lib/libQt6Gui.a C:/Qt/6.2.4/mingw_64/lib/libQt6Core.a C:/Qt/6.2.4/mingw_64/lib/libQt6EntryPoint.a ui_mainwindow.h $(OBJECTS) debug/Irregular_verbs_resource_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) $(OBJECTS)  $(LIBS)
+
+debug/Irregular_verbs_resource_res.o: Irregular_verbs_resource.rc
+	windres -i Irregular_verbs_resource.rc -o debug\Irregular_verbs_resource_res.o --include-dir=. $(DEFINES)
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Debug ..\irregular_verbs\Irregular_verbs.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -87,6 +90,7 @@ dist:
 
 clean: compiler_clean 
 	-$(DEL_FILE) debug\main.o debug\mainwindow.o debug\verb.o debug\qrc_imagenes.o debug\moc_mainwindow.o
+	-$(DEL_FILE) debug\Irregular_verbs_resource_res.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -108,8 +112,8 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_imagenes.cpp
 debug/qrc_imagenes.cpp: ../irregular_verbs/imagenes.qrc \
 		C:/Qt/6.2.4/mingw_64/bin/rcc.exe \
-		../irregular_verbs/guia\ de\ ventana.png \
-		../irregular_verbs/Guia\ de\ ventana\ nueva.png
+		../irregular_verbs/icon.ico \
+		../irregular_verbs/icon.png
 	C:\Qt\6.2.4\mingw_64\bin\rcc.exe -name imagenes ..\irregular_verbs\imagenes.qrc -o debug\qrc_imagenes.cpp
 
 compiler_moc_predefs_make_all: debug/moc_predefs.h
@@ -595,6 +599,7 @@ debug/mainwindow.o: ../irregular_verbs/mainwindow.cpp C:/Qt/6.2.4/mingw_64/inclu
 		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qdialog.h \
 		ui_mainwindow.h \
 		C:/Qt/6.2.4/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.2.4/mingw_64/include/QtGui/QIcon \
 		C:/Qt/6.2.4/mingw_64/include/QtWidgets/QApplication \
 		C:/Qt/6.2.4/mingw_64/include/QtWidgets/QHBoxLayout \
 		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qboxlayout.h \
