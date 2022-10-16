@@ -1,13 +1,16 @@
 #ifndef VERB_H
 #define VERB_H
 #include <string>
+#include <vector>
 using namespace std;
 class verb
 {
 private:
     string infinitive;
     string past_simple;
+    vector<string> alternativesPS;
     string past_participle;
+    vector<string> alternativesPP;
 public:
     verb();
     verb(string infinitive, string past_simple, string past_participle);
