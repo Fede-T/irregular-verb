@@ -1,0 +1,51 @@
+To add or remove verbs, enter the text file "verb list" and remove the verbs you want.
+the verbs you want.
+
+To add a verb, type it as follows:
+
+Infinitive_verb Past_simple Past_participle
+
+if a verb has a space as for example "had to" you should not add a space, you should add a "_".
+a "_". For example:
+
+"must hail_to had_to" --> the program will take as "hail to" and "had to".
+
+If a verb has two alternatives "/" should be added, for example:
+
+"be was/were been" --> the program will take as correct: was/were - were/was - was - were.
+
+This program is totally free.
+
+You can access the source code from the following link:
+https://github.com/Fede-T/irregular-verb
+
+Created by Troncoso Federico
+
+Translated with www.DeepL.com/Translator (free version)
+
+-----------------------------------------------------------------------------------------------------
+
+ES
+
+Para agregar o quitar verbos, ingresar al archivo de texto "verb list" y quitar
+los verbos que quiera.
+
+Para agregar un verbo se debe escribir de la siguiente manera:
+
+Infinitive_verb Past_simple Past_participle
+
+si un verbo tiene un espacio como por ejemplo "had to" no se debe agregar un espacio, se debe agregar
+un "_". Por ejemplo:
+
+"must hail_to had_to" --> el programa tomará como "hail to" y "had to"
+
+Si un verbo tiene dos alternativas se debe agregar "/", por ejemplo:
+
+"be was/were been" --> el programa tomará como correcto: was/were - were/was - was - were
+
+Este programa es totalmente gratuito.
+
+Puede acceder al codigo fuente desde el siguiente link:
+https://github.com/Fede-T/irregular-verb
+
+Created by Troncoso Federico
