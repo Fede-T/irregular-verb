@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setWindowIcon(QIcon(":/icon.png"));
+    setWindowIcon(QIcon(":/icon.icon"));
     srand(time(NULL));
     iniciarVentanas();
     inicializar();
