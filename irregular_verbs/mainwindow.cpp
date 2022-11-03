@@ -67,8 +67,9 @@ void MainWindow::leerVerbos()
 {
     fstream archivo("irregular_verbs.txt", ios::in);
     if (archivo.fail()){
-        if(errorArchivo.exec() == QMessageBox::Ok)
-            QTimer::singleShot(250, qApp, SLOT(quit()));
+        errorArchivo.exec();
+        archivo.close();
+        QTimer::singleShot(250, qApp, SLOT(quit()));
     }
 
     string infinitive, past_simple, past_participle;
@@ -79,8 +80,9 @@ void MainWindow::leerVerbos()
         getline(archivo, past_participle, '\n');
         this->verbs.push_back(verb(infinitive, past_simple, past_participle));
     }
-
+    archivo.close();
 }
+
 
 void MainWindow::lockCantidad()
 {
